@@ -29,8 +29,14 @@ const int ANIMATION_END_TIME = 17;
 void update_display(PblTm *current_time) {
 
   // Write the time (yawn)
-  static char timeText[] = "00:00";
-  string_format_time(timeText, sizeof(timeText), "%R", current_time);
+  static char timeText[] = "00:00 00";
+  char *timeFormat;
+  if (clock_is_24h_style()) {
+    timeFormat = " %R";
+  } else {
+    timeFormat = "%l:%M %p";
+  }
+  string_format_time(timeText, sizeof(timeText), timeFormat, current_time);
   text_layer_set_text(&timeLayer, timeText);
 
   // At 5pm, show the BEER O CLOCK graphic, and hide the actual time
@@ -102,7 +108,7 @@ void handle_init(AppContextRef ctx) {
   layer_add_child(&window.layer, &imageBOC.layer.layer);
 
   // Time display
-  text_layer_init(&timeLayer, GRect(50, 140, 50, 40));
+  text_layer_init(&timeLayer, GRect(40, 140, 80, 40));
   text_layer_set_text_color(&timeLayer, GColorWhite);
   text_layer_set_background_color(&timeLayer, GColorClear);
   text_layer_set_font(&timeLayer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
