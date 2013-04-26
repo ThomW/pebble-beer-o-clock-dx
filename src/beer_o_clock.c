@@ -104,7 +104,7 @@ void handle_init(AppContextRef ctx) {
   // BOC
   rotbmp_pair_init_container(RESOURCE_ID_IMAGE_TEXT_WHITE, RESOURCE_ID_IMAGE_TEXT_BLACK, &imageBOC);
   imageBOC.layer.layer.frame.origin.x = 3;
-  imageBOC.layer.layer.frame.origin.y = 55;
+  imageBOC.layer.layer.frame.origin.y = 65;
   layer_add_child(&window.layer, &imageBOC.layer.layer);
 
   // Time display
