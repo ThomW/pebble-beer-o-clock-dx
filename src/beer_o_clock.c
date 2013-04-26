@@ -59,14 +59,10 @@ void update_display(PblTm *current_time) {
     offset = (int)((float)BEER_STARTING_Y - (((float)currentSeconds / (float)totalSeconds) * (float)BEER_STARTING_Y));
   }
 
-  // Update the position of beer
-
-  // Constrain offset
+  // Update the position of imageBeer if necessary
   if (offset < 0) {
     offset = 0;
   }
-
-  // Update the position of imageBeer if necessary
   if (offset != beer_offset) {
     imageBeer.layer.layer.frame.origin.y = offset;
     beer_offset = offset;
