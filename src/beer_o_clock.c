@@ -47,11 +47,10 @@ void update_display(PblTm *current_time) {
   // Calculate 
   int offset = beer_offset;
 
-  // Hide the beer before 9am
+  // Reset the beer before 9am
   if (current_time->tm_hour < ANIMATION_START_TIME) {
     
-    offset = 0;
-    layer_set_hidden(&imageBeer.layer.layer, true);
+    offset = BEER_STARTING_Y;
 
   // Animate the beer between 9-5
   } else if ((current_time->tm_hour >= ANIMATION_START_TIME) && (current_time->tm_hour <= ANIMATION_END_TIME)) {
